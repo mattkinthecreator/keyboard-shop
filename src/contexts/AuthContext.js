@@ -6,10 +6,18 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth'
-import { addDoc, collection } from '@firebase/firestore'
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  updateDoc,
+} from '@firebase/firestore'
 import { db } from '../fire'
 
 export const authContext = React.createContext()
+
+const usersCollectionRef = collection(db, 'users')
 
 const auth = getAuth()
 
@@ -91,11 +99,11 @@ const AuthContextProvider = ({ children }) => {
       if (user) {
         clearInputs()
         setUser(user)
-        console.log(user)
         if (user.email === admins) {
           setIsAdmin(true)
         }
       } else {
+        console.log(user)
         setUser('')
         setIsAdmin(false)
       }

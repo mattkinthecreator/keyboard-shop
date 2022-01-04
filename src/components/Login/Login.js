@@ -1,8 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { authContext } from '../../contexts/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const {
+    user,
     email,
     setEmail,
     password,
@@ -14,6 +16,12 @@ const Login = () => {
     emailError,
     passwordError,
   } = useContext(authContext)
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    user?.email && navigate('/')
+  }, [user])
 
   return (
     <section className="login">
