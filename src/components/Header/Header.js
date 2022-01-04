@@ -1,6 +1,7 @@
 import React from 'react'
 import './Header.css'
 import Logo from '../../assets/img/image.svg'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
@@ -13,7 +14,7 @@ const Header = () => {
         <p>Аксессуары</p>
       </div>
       <div className="header__right">
-        <p>Войти / Зарегистрироваться</p>
+        <Link to="/login">Войти / Зарегистрироваться</Link>
       </div>
     </div>
   )

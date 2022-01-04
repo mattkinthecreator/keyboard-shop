@@ -6,10 +6,14 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth'
+import { addDoc, collection } from '@firebase/firestore'
+import { db } from '../fire'
 
 export const authContext = React.createContext()
 
 const auth = getAuth()
+
+const usersCollectionRef = collection(db, 'users')
 
 const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState('')
@@ -56,10 +60,10 @@ const AuthContextProvider = ({ children }) => {
     clearErrors()
     createUserWithEmailAndPassword(auth, email, password)
       .then(async () => {
-        await addDoc(favoritesCollectionRef, {
+        await addDoc(usersCollectionRef, {
           user: email,
           favorites: {
-            songs: [],
+            products: [],
           },
         })
       })
@@ -87,11 +91,11 @@ const AuthContextProvider = ({ children }) => {
       if (user) {
         clearInputs()
         setUser(user)
+        console.log(user)
         if (user.email === admins) {
           setIsAdmin(true)
         }
       } else {
-        console.log(user)
         setUser('')
         setIsAdmin(false)
       }
@@ -103,7 +107,6 @@ const AuthContextProvider = ({ children }) => {
   }, [])
 
   const values = {
-    favorites,
     email,
     user,
     password,
