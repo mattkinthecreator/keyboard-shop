@@ -21,8 +21,6 @@ const usersCollectionRef = collection(db, 'users')
 
 const auth = getAuth()
 
-const usersCollectionRef = collection(db, 'users')
-
 const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState('')
   const [email, setEmail] = useState('')

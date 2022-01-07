@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from 'react';
-import { brandsContext } from '../../../contexts/BrandsContext';
+import React, { useContext, useEffect } from 'react'
+import { brandsContext } from '../../../contexts/BrandsContext'
 
 const AddBrand = () => {
-  const { brands, getBrands } = useContext(brandsContext);
+  const { brands, getBrands } = useContext(brandsContext)
 
   useEffect(() => {
-    getBrands();
-  });
+    getBrands()
+  })
 
   return (
     <div>
@@ -23,7 +23,7 @@ const AddBrand = () => {
           ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AddBrand;
+export default AddBrand
