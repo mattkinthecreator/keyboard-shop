@@ -14,6 +14,7 @@ export const brandsContext = createContext();
 
 const INIT_STATE = {
   brands: [],
+  editBrand: '',
 };
 
 const brandsCollectionRef = collection(db, 'brands');
@@ -22,6 +23,8 @@ const reducer = (state = INIT_STATE, action) => {
   switch (action.type) {
     case 'GET_BRANDS':
       return { ...state, brands: action.payload };
+    case 'GET_EDIT_BRAND':
+      return { ...state, editBrand: action.payload };
     default:
       return state;
   }
@@ -51,14 +54,20 @@ const BrandsContextProvider = ({ children }) => {
     getBrands();
   };
 
+  const handleEditBrand = (obj) => {
+    dispatch({ type: 'GET_EDIT_BRAND', payload: obj });
+  };
+
   return (
     <brandsContext.Provider
       value={{
         brands: state.brands,
+        editBrand: state.editBrand,
         getBrands,
         addBrand,
         deleteBrand,
         updateBrand,
+        handleEditBrand,
       }}>
       {children}
     </brandsContext.Provider>

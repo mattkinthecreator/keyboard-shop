@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useContext, useEffect } from 'react'
 import { brandsContext } from '../../../contexts/BrandsContext'
 
@@ -7,21 +8,29 @@ const AddBrand = () => {
   useEffect(() => {
     getBrands()
   })
+=======
+import React, { useContext, useState } from 'react';
+import { brandsContext } from '../../../contexts/BrandsContext';
+
+const AddBrand = ({ setShowAddModal }) => {
+  const { addBrand } = useContext(brandsContext);
+
+  const [brandName, setBrandName] = useState('');
+
+  const handleAdd = () => {
+    setShowAddModal(false);
+    addBrand({ brand: brandName });
+  };
+>>>>>>> 1553ece038310437b1e82e334e2b1512fa21227a
 
   return (
-    <div>
-      <h2>Brands</h2>
-      <button>Add brand</button>
-      <div className="brands">
-        {brands &&
-          brands.map((brand) => (
-            <div className="brand">
-              <p key={brand.id}>{brand.brand}</p>
-              <button>X</button>
-              <button>Update</button>
-            </div>
-          ))}
-      </div>
+    <div className="modal">
+      <input
+        type="text"
+        value={brandName}
+        onChange={(e) => setBrandName(e.target.value)}
+      />
+      <button onClick={handleAdd}>Add</button>
     </div>
   )
 }
