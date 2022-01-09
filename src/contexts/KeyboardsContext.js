@@ -37,12 +37,16 @@ const KeyboardsContextProvider = ({ children }) => {
     dispatch({ type: 'GET_KEYBOARDS', payload: keyboards })
   }
 
+  const addKeyboard = async (obj) => {
+    await addDoc(keyboardsCollectionRef, obj)
+  }
+
   return (
     <keyboardsContext.Provider
       value={{
         keyboards: state.keyboards,
-
         getKeyboards,
+        addKeyboard,
       }}
     >
       {children}

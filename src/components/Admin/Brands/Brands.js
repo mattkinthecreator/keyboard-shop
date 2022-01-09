@@ -1,23 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { brandsContext } from '../../../contexts/BrandsContext';
-import AddBrand from './AddBrand';
-import EditBrand from './EditBrand';
+import React, { useContext, useEffect, useState } from 'react'
+import { brandsContext } from '../../../contexts/BrandsContext'
+import AddBrand from './AddBrand'
+import EditBrand from './EditBrand'
 
 const Brands = () => {
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [showAddModal, setShowAddModal] = useState(false)
 
   const { brands, getBrands, deleteBrand, handleEditBrand } =
-    useContext(brandsContext);
+    useContext(brandsContext)
 
   useEffect(() => {
-    getBrands();
-  }, []);
+    getBrands()
+  }, [])
 
   const handleEditModal = (obj) => {
-    setShowEditModal(!showEditModal);
-    handleEditBrand(obj);
-  };
+    setShowEditModal(!showEditModal)
+    handleEditBrand(obj)
+  }
 
   return (
     <div>
@@ -36,7 +36,7 @@ const Brands = () => {
       {showEditModal && <EditBrand setShowEditModal={setShowEditModal} />}
       {showAddModal && <AddBrand setShowAddModal={setShowAddModal} />}
     </div>
-  );
-};
+  )
+}
 
-export default Brands;
+export default Brands

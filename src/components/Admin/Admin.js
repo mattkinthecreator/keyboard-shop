@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import AddAccessories from './AddAccessories/AddAccessories';
-import Brands from './AddBrand/Brands';
-import AddProduct from './AddProduct/AddProduct';
+import React, { useState } from 'react'
+import AddAccessories from './AddAccessories/AddAccessories'
+import Brands from './Brands/Brands'
+import Keyboards from './Keyboards/Keyboards'
 
 const Admin = () => {
-  const [displayComp, setdisplayComp] = useState(0);
+  const [displayComp, setdisplayComp] = useState(0)
 
   const switchComp = () => {
     switch (displayComp) {
       case 0:
-        return <Brands />;
+        return <Brands />
       case 1:
-        return <AddProduct />;
+        return <Keyboards />
       case 2:
-        return <AddAccessories />;
+        return <AddAccessories />
       default:
-        return <Brands />;
+        return <Brands />
     }
-  };
+  }
 
   return (
     <div>
@@ -30,7 +30,7 @@ const Admin = () => {
       </aside>
       <div className="admin-container">{switchComp()}</div>
     </div>
-  );
-};
+  )
+}
 
-export default Admin;
+export default Admin
