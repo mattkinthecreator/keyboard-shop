@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react'
-import { authContext } from '../../contexts/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import React, { useContext, useEffect } from 'react';
+import { authContext } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const {
@@ -15,13 +15,14 @@ const Login = () => {
     setHasAccount,
     emailError,
     passwordError,
-  } = useContext(authContext)
+    forgotPassword,
+  } = useContext(authContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
-    user?.email && navigate('/')
-  }, [user])
+    user?.email && navigate('/');
+  }, [user]);
 
   return (
     <section className="login">
@@ -48,6 +49,7 @@ const Login = () => {
           required
           autoFocus
         />
+        <p onClick={forgotPassword}>Забыли пароль?</p>
         <p className="errorMsg">{passwordError}</p>
         <div className="login-btn-container">
           {hasAccount ? (
@@ -59,8 +61,7 @@ const Login = () => {
                 Еще нет аккаунта?{' '}
                 <span
                   className="authSpan"
-                  onClick={() => setHasAccount(!hasAccount)}
-                >
+                  onClick={() => setHasAccount(!hasAccount)}>
                   ЗАРЕГИСТРИРУЙСЯ
                 </span>
               </p>
@@ -75,9 +76,8 @@ const Login = () => {
                 <span
                   className="authSpan"
                   onClick={() => {
-                    setHasAccount(!hasAccount)
-                  }}
-                >
+                    setHasAccount(!hasAccount);
+                  }}>
                   ВОЙТИ
                 </span>
               </p>
@@ -86,7 +86,7 @@ const Login = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

@@ -1,31 +1,37 @@
-import React, { useContext, useState } from 'react'
-import { keyboardsContext } from '../../../contexts/KeyboardsContext'
-import { Select } from 'antd'
-import { brandsContext } from '../../../contexts/BrandsContext'
-import 'antd/dist/antd.css'
+import React, { useContext, useState } from 'react';
+import { keyboardsContext } from '../../../contexts/KeyboardsContext';
+import { Select } from 'antd';
+import { brandsContext } from '../../../contexts/BrandsContext';
+import 'antd/dist/antd.css';
 
 const AddKeyboard = ({ setShowAddModal }) => {
-  const { addBrand } = useContext(keyboardsContext)
-  const { brands } = useContext(brandsContext)
-  const { Option } = Select
+  const { addKeyboard } = useContext(keyboardsContext);
+  const { brands } = useContext(brandsContext);
+  const { Option } = Select;
 
   const [keyboard, setKeyboard] = useState({
     name: '',
-    brand: '',
+    brand: 'Leopold',
     cabel: '',
     form: '',
     img: '',
     keycaps: '',
     price: 0,
     switches: [],
-  })
+  });
 
   const handleAdd = () => {
-    setShowAddModal(false)
-    console.log(keyboard)
-  }
+    setShowAddModal(false);
+    addKeyboard(keyboard);
+  };
+
   function handleChange(e) {
-    setKeyboard({ ...keyboard, [e.target.name]: e.target.value })
+    setKeyboard({
+      ...keyboard,
+      [e.target?.name ? e.target?.name : 'brand']: e.target?.value
+        ? e.target?.value
+        : e,
+    });
   }
 
   return (
@@ -59,9 +65,9 @@ const AddKeyboard = ({ setShowAddModal }) => {
           defaultValue="Leopold"
           style={{ width: 120 }}
           onChange={handleChange}
-        >
+          name="brand">
           {brands.map((brand) => (
-            <Option value={brand.brand} key={brand.id}>
+            <Option value={brand.brand} key={brand.id} name="brand">
               {brand.brand}
             </Option>
           ))}
@@ -79,8 +85,8 @@ const AddKeyboard = ({ setShowAddModal }) => {
           100%
         </label>
         <label>
-          <input type="radio" name="form" value="75%" onChange={handleChange} />
-          75%
+          <input type="radio" name="form" value="80%" onChange={handleChange} />
+          80%
         </label>
         <label>
           <input type="radio" name="form" value="60%" onChange={handleChange} />
@@ -135,7 +141,7 @@ const AddKeyboard = ({ setShowAddModal }) => {
       </div>
       <button onClick={handleAdd}>Add</button>
     </div>
-  )
-}
+  );
+};
 
-export default AddKeyboard
+export default AddKeyboard;
